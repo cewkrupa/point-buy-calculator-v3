@@ -1,20 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <h1 class="title">Point Buy Calculator v3</h1>
+    <Row name="Strength" v-bind:score='8' v-bind:point-cost='0' v-bind:modifier='-1'/>
+
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+  import Vue from 'vue'
+  import Row from './components/Row.vue'
 
-export default Vue.extend({
+  export default Vue.extend({
   name: 'app',
   components: {
-    HelloWorld
+    Row
   }
-});
+})
 </script>
 
 <style>
