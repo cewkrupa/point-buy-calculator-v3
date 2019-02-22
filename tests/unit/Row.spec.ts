@@ -1,4 +1,4 @@
-import {mount} from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import Row from '@/components/Row.vue'
 
 describe('Row.vue', () => {
