@@ -19,9 +19,17 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'Score',
+  data () {
+    return {
+      score: null
+    }
+  },
   methods: {
-    incrementScore () {
-      console.log('SCORE')
+    increment() {
+      this.$emit('increment', 'score')
+    },
+    decrement () {
+      this.$emit('decrement', 'score')
     }
   }
 })

@@ -1,3 +1,4 @@
+/* eslint no-unused-vars: "off" */
 import { shallowMount, Wrapper } from '@vue/test-utils'
 import Score from '@/components/Score.vue'
 
@@ -9,16 +10,15 @@ describe('Score.vue', () => {
 
   it('should render the score template correctly', function () {
     expect(wrapper.element).toMatchSnapshot()
-  });
+  })
 
-  describe('the increment button', function () {
-    const increment = jest.fn()
-    wrapper.setMethods({ increment })
-    const el = wrapper.find
-    wrapper.vm.
-    it('should call the increment method and emit the increment event', function () {
+  it('should emit an increment event when the increment method is called', () => {
+    wrapper.vm.increment()
+    expect(wrapper.emitted().increment).toBeTruthy()
+  })
 
-    });
-  });
-
+  it('should emit a decrement event when the decrement method is called', () => {
+    wrapper.vm.decrement()
+    expect(wrapper.emitted().decrement).toBeTruthy()
+  })
 })
