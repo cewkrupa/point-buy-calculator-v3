@@ -5,7 +5,7 @@
         {{ name }}
       </div>
       <div class="level-item">
-        <score />
+        <Score :score="score" v-on:update:score="$emit('update:score', $event)"></Score>
       </div>
       <div class="level-item">
         {{ pointCost }}

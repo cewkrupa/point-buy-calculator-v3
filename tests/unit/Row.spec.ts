@@ -7,7 +7,7 @@ describe('Row.vue', () => {
     const score = 8
     const pointCost = 0
     const modifier = -1
-    const wrapper = mount(Row, {
+    const propsWrapper = mount(Row, {
       propsData: {
         name,
         score,
@@ -15,10 +15,24 @@ describe('Row.vue', () => {
         modifier
       }
     })
-    console.log(wrapper.attributes())
-    expect(wrapper.text()).toContain(name)
-    expect(wrapper.text()).toContain(score)
-    expect(wrapper.text()).toContain(pointCost)
-    expect(wrapper.text()).toContain(modifier)
+    expect(propsWrapper.text()).toContain(name)
+    expect(propsWrapper.text()).toContain(score)
+    expect(propsWrapper.text()).toContain(pointCost)
+    expect(propsWrapper.text()).toContain(modifier)
+  })
+
+  it('should emit an update score event when the score is updated in the score component', () => {
+    const wrapper = mount(Row, {
+      propsData: {
+        name: 'test',
+        score: 4,
+        pointCost: 0,
+        modifier: 0
+      }
+    })
+    wrapper.find('.score-increment').trigger('click')
+    wrapper.find('.score-decrement').trigger('click')
+
+    expect(wrapper.emitted('update:score').length).toBe(2)
   })
 })

@@ -8,7 +8,7 @@
       :score="8"
       :point-cost="0"
       :modifier="-1"
-    />
+    ></Row>
   </div>
 </template>
 

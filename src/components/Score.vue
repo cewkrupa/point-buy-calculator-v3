@@ -26,10 +26,10 @@ export default Vue.extend({
   },
   methods: {
     increment() {
-      this.$emit('increment', 'score')
+      this.$emit('update:score', this.score + 1)
     },
     decrement () {
-      this.$emit('decrement', 'score')
+      this.$emit('update:score', this.score - 1)
     }
   }
 })
