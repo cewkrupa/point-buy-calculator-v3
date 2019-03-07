@@ -1,15 +1,15 @@
 <template>
   <div class="level">
     <div class="level-item score">
-      8
+      {{score}}
     </div>
     <div class="level-item score-controls">
-      <div class="score-increment">
+      <button @click="increment" class="score-increment button">
         +
-      </div>
-      <div class="score-decrement">
+      </button>
+      <button @click="decrement" class="score-decrement button">
         -
-      </div>
+      </button>
     </div>
   </div>
 </template>
@@ -19,9 +19,9 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'Score',
-  data () {
-    return {
-      score: null
+  props: {
+    score: {
+      type: Number
     }
   },
   methods: {
