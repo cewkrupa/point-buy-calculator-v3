@@ -1,19 +1,19 @@
 <template>
   <div class="container">
-    <div class="level">
-      <div class="level-item">
+    <div class="columns">
+      <div class="column is-one-fifth">
         {{ name }}
       </div>
-      <div class="level-item">
+      <div class="column is-one-fifth">
         <Score :score="score" v-on:update:score="$emit('update:score', $event)"></Score>
       </div>
-      <div class="level-item">
+      <div class="column is-one-fifth">
         {{ pointCost }}
       </div>
-      <div class="level-item">
+      <div class="column is-one-fifth">
         {{ modifier }}
       </div>
-      <div class="level-item">
+      <div class="column is-one-fifth">
         <button class="button">
           Reset
         </button>

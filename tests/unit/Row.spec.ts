@@ -30,6 +30,7 @@ describe('Row.vue', () => {
         modifier: 0
       }
     })
+
     wrapper.find('.score-increment').trigger('click')
     wrapper.find('.score-decrement').trigger('click')
 
