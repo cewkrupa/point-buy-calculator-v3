@@ -14,7 +14,7 @@
         {{ modifier }}
       </div>
       <div class="column is-one-fifth">
-        <button class="button">
+        <button class="button reset-button" @click="$emit('reset:score')">
           Reset
         </button>
       </div>

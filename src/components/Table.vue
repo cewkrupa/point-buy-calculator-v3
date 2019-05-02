@@ -18,6 +18,7 @@
            :point-cost="ability.cost"
            :modifier="ability.modifier"
            v-on:update:score="updateScore(ability, $event)"
+           v-on:reset:score="resetScore(ability)"
       >
       </Row>
     </div>
@@ -33,51 +34,21 @@ export default Vue.extend({
   components: {
     Row
   },
+  props: {
+    abilityArray: Array,
+    baseScore: Number
+  },
   methods: {
     updateScore(ability, updatedScore) {
       ability.score = updatedScore
+    },
+    resetScore(ability) {
+      this.updateScore(ability, this.baseScore)
     }
   },
-  data: function() {
-    return {
-      abilities: [
-        {
-          'name': 'Strength',
-          'score': 8,
-          'modifier': -1,
-          'cost': 0
-        },
-        {
-          'name': 'Dexterity',
-          'score': 8,
-          'modifier': -1,
-          'cost': 0
-        },
-        {
-          'name': 'Constitution',
-          'score': 8,
-          'modifier': -1,
-          'cost': 0
-        },
-        {
-          'name': 'Intelligence',
-          'score': 8,
-          'modifier': -1,
-          'cost': 0
-        },
-        {
-          'name': 'Wisdom',
-          'score': 8,
-          'modifier': -1,
-          'cost': 0
-        },
-        {
-          'name': 'Charisma',
-          'score': 8,
-          'modifier': -1,
-          'cost': 0
-        }
-      ]
+  computed: {
+    abilities() {
+      return this.abilityArray
     }
   }
 })

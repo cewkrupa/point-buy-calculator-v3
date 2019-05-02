@@ -36,4 +36,18 @@ describe('Row.vue', () => {
 
     expect(wrapper.emitted('update:score').length).toBe(2)
   })
+
+  it('should emit a reset score event when the reset button is clicked', () => {
+    const wrapper = mount(Row, {
+      propsData: {
+        name: 'test',
+        score: 4,
+        pointCost: 0,
+        modifier: 0
+      }
+    })
+
+    wrapper.find('.reset-button').trigger('click')
+    expect(wrapper.emitted()['reset:score']).toBeTruthy()
+  })
 })

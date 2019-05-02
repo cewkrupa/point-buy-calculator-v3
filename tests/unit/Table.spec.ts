@@ -3,8 +3,28 @@ import Table from '@/components/Table.vue'
 
 describe('Table.vue', () => {
   let wrapper: Wrapper<any>
+  const abilities = [
+    {
+      name: 'TestAbility',
+      score: 69,
+      pointCost: 42,
+      modifier: -12
+    },
+    {
+      name: 'Postmodernism',
+      score: 123,
+      pointCost: 5,
+      modifier: 37
+    }
+  ]
+  const baseScore = 8
   beforeEach(function () {
-    wrapper = shallowMount(Table)
+    wrapper = shallowMount(Table, {
+      propsData: {
+        abilityArray: abilities,
+        baseScore: baseScore
+      }
+    })
   })
 
   it('should render the table correctly', () => {
@@ -13,7 +33,7 @@ describe('Table.vue', () => {
 
   it('should render the ability scores and the ability rows', () => {
     const columnCount = 5
-    const rowCount = 6
+    const rowCount = abilities.length
 
     let columns = wrapper.find('.table-headers')
     let rows = wrapper.find('.ability-rows')
@@ -23,23 +43,15 @@ describe('Table.vue', () => {
   })
 
   it('should change the score when an update score event is received', () => {
-    let initialScore = 4;
-    let updatedScore = 69
-    wrapper.setData({
-      abilities: [
-        {
-          'name': 'TestAbility',
-          'score': initialScore,
-          'modifier': 5,
-          'cost': 0
-        }
-      ]
-
-    })
+    let updatedScore = 1234
 
     wrapper.find('.row').vm.$emit('update:score', updatedScore)
-    expect(wrapper.vm.$data.abilities[0].score).toBe(updatedScore);
+    expect(wrapper.vm.$props.abilityArray[0].score).toBe(updatedScore)
   })
 
-
+  it('should reset the score when a reset score event is received', () => {
+    let initialScore = abilities[0].score
+    wrapper.find('.row').vm.$emit('reset:score')
+    expect(abilities[0].score).toBe(baseScore)
+  })
 })
