@@ -6,6 +6,8 @@
     <Table
       :abilityArray="abilities"
       :baseScore="baseScore"
+      :maxScore="maxScore"
+      :minScore="minScore"
     ></Table>
   </div>
 </template>
@@ -24,7 +26,9 @@ export default Vue.extend({
   data: function() {
     return {
       abilities: config.abilities,
-      baseScore: config.baseScore
+      baseScore: config.baseScore,
+      maxScore: config.maxScore,
+      minScore: config.minScore
     }
   }
 })

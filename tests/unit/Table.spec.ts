@@ -18,11 +18,15 @@ describe('Table.vue', () => {
     }
   ]
   const baseScore = 8
+  const maxScore = 15
+  const minScore = 5
   beforeEach(function () {
     wrapper = shallowMount(Table, {
       propsData: {
         abilityArray: abilities,
-        baseScore: baseScore
+        baseScore: baseScore,
+        maxScore: maxScore,
+        minScore: minScore
       }
     })
   })
@@ -43,7 +47,7 @@ describe('Table.vue', () => {
   })
 
   it('should change the score when an update score event is received', () => {
-    let updatedScore = 1234
+    let updatedScore = 12
 
     wrapper.find('.row').vm.$emit('update:score', updatedScore)
     expect(wrapper.vm.$props.abilityArray[0].score).toBe(updatedScore)
@@ -58,5 +62,21 @@ describe('Table.vue', () => {
     wrapper.find('.reset-all-button').trigger('click')
     expect(abilities[0].score).toBe(baseScore)
     expect(abilities[1].score).toBe(baseScore);
+  })
+
+  it('should not update the score if the update score would be above the max score', () => {
+    abilities[0].score = maxScore
+
+    wrapper.find('.row').vm.$emit('update:score', 400)
+
+    expect(abilities[0].score).toBe(maxScore)
+  })
+
+  it('should not update the score if the update score would be below the min score', () => {
+    abilities[0].score =  minScore
+
+    wrapper.find('.row').vm.$emit('update:score', 2)
+
+    expect(abilities[0].score).toBe(minScore)
   })
 })

@@ -40,23 +40,27 @@ export default Vue.extend({
   },
   props: {
     abilityArray: Array,
-    baseScore: Number
+    baseScore: Number,
+    maxScore: Number,
+    minScore: Number
   },
   methods: {
-    updateScore(ability, updatedScore) {
-      ability.score = updatedScore
+    updateScore (ability, updatedScore) {
+      if (updatedScore >= this.minScore && updatedScore <= this.maxScore) {
+        ability.score = updatedScore
+      }
     },
-    resetScore(ability) {
+    resetScore (ability) {
       this.updateScore(ability, this.baseScore)
     },
-    resetAll() {
+    resetAll () {
       this.abilities.forEach((ability) => {
         this.resetScore(ability)
       })
     }
   },
   computed: {
-    abilities() {
+    abilities () {
       return this.abilityArray
     }
   }

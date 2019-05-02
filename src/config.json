@@ -37,5 +37,7 @@
       "cost": 0
     }
   ],
-  "baseScore": 8
+  "baseScore": 8,
+  "maxScore": 15,
+  "minScore": 6
 }
