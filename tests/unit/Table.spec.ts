@@ -50,8 +50,13 @@ describe('Table.vue', () => {
   })
 
   it('should reset the score when a reset score event is received', () => {
-    let initialScore = abilities[0].score
     wrapper.find('.row').vm.$emit('reset:score')
     expect(abilities[0].score).toBe(baseScore)
+  })
+
+  it('should reset all scores when the reset all button is clicked', () => {
+    wrapper.find('.reset-all-button').trigger('click')
+    expect(abilities[0].score).toBe(baseScore)
+    expect(abilities[1].score).toBe(baseScore);
   })
 })

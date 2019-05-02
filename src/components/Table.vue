@@ -6,7 +6,11 @@
         <div class="column is-one-fifth is-size-7-mobile">Score</div>
         <div class="column is-one-fifth is-size-7-mobile">Point modifier</div>
         <div class="column is-one-fifth is-size-7-mobile">Point cost</div>
-        <div class="column is-one-fifth is-size-7-mobile">&nbsp;</div>
+        <div class="column is-one-fifth is-size-7-mobile">
+          <button class="button reset-all-button" @click="resetAll()">
+            Reset All
+          </button>
+        </div>
       </div>
     </div>
     <div class="ability-rows">
@@ -44,6 +48,11 @@ export default Vue.extend({
     },
     resetScore(ability) {
       this.updateScore(ability, this.baseScore)
+    },
+    resetAll() {
+      this.abilities.forEach((ability) => {
+        this.resetScore(ability)
+      })
     }
   },
   computed: {
