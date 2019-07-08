@@ -20,7 +20,8 @@
            :name="ability.name"
            :score="ability.score"
            :point-cost="ability.cost"
-           :modifier="ability.modifier"
+           :maxScore="maxScore"
+           :minScore="minScore"
            v-on:update:score="updateScore(ability, $event)"
            v-on:reset:score="resetScore(ability)"
       >

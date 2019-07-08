@@ -8,13 +8,16 @@ describe('Table.vue', () => {
       name: 'TestAbility',
       score: 69,
       pointCost: 42,
-      modifier: -12
     },
     {
       name: 'Postmodernism',
       score: 123,
       pointCost: 5,
-      modifier: 37
+    },
+    {
+      name: 'PantherMan',
+      score: 12,
+      pointCost: 4,
     }
   ]
   const baseScore = 8

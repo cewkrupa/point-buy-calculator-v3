@@ -4,10 +4,10 @@
       {{score}}
     </div>
     <div class="level-item score-controls">
-      <button @click="increment" class="score-increment button">
+      <button @click="increment" :disabled="score >= maxScore" class="score-increment button">
         +
       </button>
-      <button @click="decrement" class="score-decrement button">
+      <button @click="decrement" :disabled="score <= minScore" class="score-decrement button">
         -
       </button>
     </div>
@@ -22,7 +22,9 @@ export default Vue.extend({
   props: {
     score: {
       type: Number
-    }
+    },
+    maxScore: Number,
+    minScore: Number
   },
   methods: {
     increment() {

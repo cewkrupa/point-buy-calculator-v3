@@ -3,41 +3,36 @@
     {
       "name": "Strength",
       "score": 8,
-      "modifier": -1,
       "cost": 0
     },
     {
       "name": "Dexterity",
       "score": 8,
-      "modifier": -1,
       "cost": 0
     },
     {
       "name": "Constitution",
       "score": 8,
-      "modifier": -1,
       "cost": 0
     },
     {
       "name": "Intelligence",
       "score": 8,
-      "modifier": -1,
       "cost": 0
     },
     {
       "name": "Wisdom",
       "score": 8,
-      "modifier": -1,
       "cost": 0
     },
     {
       "name": "Charisma",
       "score": 8,
-      "modifier": -1,
       "cost": 0
     }
   ],
   "baseScore": 8,
   "maxScore": 15,
-  "minScore": 6
+  "minScore": 6,
+  "thresholdScore": 14
 }

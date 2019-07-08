@@ -6,19 +6,16 @@ describe('Row.vue', () => {
     const name = 'Strength'
     const score = 8
     const pointCost = 0
-    const modifier = -1
     const propsWrapper = mount(Row, {
       propsData: {
         name,
         score,
-        pointCost,
-        modifier
+        pointCost
       }
     })
     expect(propsWrapper.text()).toContain(name)
     expect(propsWrapper.text()).toContain(score)
     expect(propsWrapper.text()).toContain(pointCost)
-    expect(propsWrapper.text()).toContain(modifier)
   })
 
   it('should emit an update score event when the score is updated in the score component', () => {
@@ -27,7 +24,6 @@ describe('Row.vue', () => {
         name: 'test',
         score: 4,
         pointCost: 0,
-        modifier: 0
       }
     })
 
@@ -43,11 +39,22 @@ describe('Row.vue', () => {
         name: 'test',
         score: 4,
         pointCost: 0,
-        modifier: 0
       }
     })
 
     wrapper.find('.reset-button').trigger('click')
     expect(wrapper.emitted()['reset:score']).toBeTruthy()
+  })
+  it('should set the modifier for a score to be half of (rounded down) 10 less than the score', () => {
+    const wrapper = mount(Row, {
+      propsData: {
+        name: 'test',
+        score: 12,
+        pointCost: 0,
+      }
+    })
+    let calculatedModifier = (Math.floor((12 - 10) / 2))
+
+    expect(wrapper.find('.modifier-section').text()).toEqual(calculatedModifier.toString())
   })
 })
