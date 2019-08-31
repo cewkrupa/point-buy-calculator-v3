@@ -34,5 +34,7 @@
   "baseScore": 8,
   "maxScore": 15,
   "minScore": 6,
-  "thresholdScore": 14
+  "totalPoints": 24,
+  "thresholdScore": 14,
+  "thresholdInterval": 2
 }
