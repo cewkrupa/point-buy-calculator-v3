@@ -16,13 +16,16 @@
     <div class="ability-rows">
       <Row v-for="ability in abilities"
            class="row"
+           :data-qa="`row-${ability.name}`"
            :key="ability.name"
            :name="ability.name"
            :score="ability.score"
            :point-cost="ability.cost"
            :maxScore="maxScore"
            :minScore="minScore"
-           v-on:update:score="updateScore(ability, $event)"
+           :thresholdScore="thresholdScore"
+           :thresholdInterval="thresholdInterval"
+           v-on:update:score="updateScore(ability, $event['score'], $event['cost'])"
            v-on:reset:score="resetScore(ability)"
       >
       </Row>
@@ -43,12 +46,15 @@ export default Vue.extend({
     abilityArray: Array,
     baseScore: Number,
     maxScore: Number,
-    minScore: Number
+    minScore: Number,
+    thresholdScore: Number,
+    thresholdInterval: Number
   },
   methods: {
-    updateScore (ability, updatedScore) {
+    updateScore (ability, updatedScore, updatedCost) {
       if (updatedScore >= this.minScore && updatedScore <= this.maxScore) {
         ability.score = updatedScore
+        ability.cost = updatedCost
       }
     },
     resetScore (ability) {

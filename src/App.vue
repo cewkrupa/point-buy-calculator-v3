@@ -14,6 +14,8 @@
       :baseScore="baseScore"
       :maxScore="maxScore"
       :minScore="minScore"
+      :thresholdScore="thresholdScore"
+      :thresholdInterval="thresholdInterval"
     ></Table>
   </div>
 </template>
@@ -39,7 +41,9 @@ export default Vue.extend({
       abilities: config.abilities,
       baseScore: config.baseScore,
       maxScore: config.maxScore,
-      minScore: config.minScore
+      minScore: config.minScore,
+      thresholdScore: config.thresholdScore,
+      thresholdInterval: config.thresholdInterval
     }
   }
 })

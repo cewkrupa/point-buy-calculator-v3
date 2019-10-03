@@ -7,17 +7,17 @@ describe('Table.vue', () => {
     {
       name: 'TestAbility',
       score: 69,
-      pointCost: 42,
+      pointCost: 42
     },
     {
       name: 'Postmodernism',
       score: 123,
-      pointCost: 5,
+      pointCost: 5
     },
     {
       name: 'PantherMan',
       score: 12,
-      pointCost: 4,
+      pointCost: 4
     }
   ]
   const baseScore = 8
@@ -49,11 +49,13 @@ describe('Table.vue', () => {
     expect(rows.element.childElementCount).toBe(rowCount)
   })
 
-  it('should change the score when an update score event is received', () => {
+  it('should change the score and cost when an update score event is received', () => {
     let updatedScore = 12
+    let updatedCost = 4
 
-    wrapper.find('.row').vm.$emit('update:score', updatedScore)
-    expect(wrapper.vm.$props.abilityArray[0].score).toBe(updatedScore)
+    wrapper.find(`[data-qa="row-PantherMan"]`).vm.$emit('update:score', updatedScore, updatedCost)
+    expect(wrapper.vm.$props.abilityArray[2].score).toBe(updatedScore)
+    expect(wrapper.vm.$props.abilityArray[2].pointCost).toBe(updatedCost)
   })
 
   it('should reset the score when a reset score event is received', () => {
@@ -64,7 +66,7 @@ describe('Table.vue', () => {
   it('should reset all scores when the reset all button is clicked', () => {
     wrapper.find('.reset-all-button').trigger('click')
     expect(abilities[0].score).toBe(baseScore)
-    expect(abilities[1].score).toBe(baseScore);
+    expect(abilities[1].score).toBe(baseScore)
   })
 
   it('should not update the score if the update score would be above the max score', () => {
@@ -76,7 +78,7 @@ describe('Table.vue', () => {
   })
 
   it('should not update the score if the update score would be below the min score', () => {
-    abilities[0].score =  minScore
+    abilities[0].score = minScore
 
     wrapper.find('.row').vm.$emit('update:score', 2)
 

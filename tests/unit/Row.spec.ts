@@ -23,7 +23,7 @@ describe('Row.vue', () => {
       propsData: {
         name: 'test',
         score: 4,
-        pointCost: 0,
+        pointCost: 0
       }
     })
 
@@ -38,7 +38,7 @@ describe('Row.vue', () => {
       propsData: {
         name: 'test',
         score: 4,
-        pointCost: 0,
+        pointCost: 0
       }
     })
 
@@ -50,11 +50,35 @@ describe('Row.vue', () => {
       propsData: {
         name: 'test',
         score: 12,
-        pointCost: 0,
+        pointCost: 0
       }
     })
     let calculatedModifier = (Math.floor((12 - 10) / 2))
 
     expect(wrapper.find('.modifier-section').text()).toEqual(calculatedModifier.toString())
+  })
+  it('should calculate the correct point cost when updating score and emit new score and new point cost', () => {
+    const wrapper = mount(Row, {
+      propsData: {
+        name: 'test',
+        score: 4,
+        pointCost: 0,
+        thresholdScore: 5,
+        thresholdInterval: 2
+      }
+    })
+
+    // tslint:disable-next-line
+    // @ts-ignore
+    wrapper.vm.updateScore(6)
+    // tslint:disable-next-line
+    // @ts-ignore
+    wrapper.vm.updateScore(5)
+    // tslint:disable-next-line
+    // @ts-ignore
+    wrapper.vm.updateScore(3)
+    expect(wrapper.emitted('update:score')[0][0]).toEqual({ score: 6, cost: 2 })
+    expect(wrapper.emitted('update:score')[1][0]).toEqual({ score: 5, cost: 1 })
+    expect(wrapper.emitted('update:score')[2][0]).toEqual({ score: 3, cost: -1 })
   })
 })

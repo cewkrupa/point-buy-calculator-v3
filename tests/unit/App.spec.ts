@@ -7,12 +7,12 @@ describe('App.vue', () => {
     {
       name: 'TestAbility',
       score: 69,
-      pointCost: 42,
+      pointCost: 42
     },
     {
       name: 'Postmodernism',
       score: 123,
-      pointCost: 5,
+      pointCost: 5
     }
   ]
   const baseScore = 8

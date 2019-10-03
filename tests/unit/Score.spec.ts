@@ -42,7 +42,7 @@ describe('Score.vue', () => {
       },
       sync: false
     })
-    expect(scoreWrapper.find('.score-increment').attributes('disabled')).toBe('disabled');
+    expect(scoreWrapper.find('.score-increment').attributes('disabled')).toBe('disabled')
   })
 
   it('should enable the increment button when the score is less than the max score', async () => {
@@ -55,8 +55,8 @@ describe('Score.vue', () => {
       },
       sync: false
     })
-    expect(scoreWrapper.find('.score-increment').attributes('disabled')).toBeFalsy();
-  });
+    expect(scoreWrapper.find('.score-increment').attributes('disabled')).toBeFalsy()
+  })
 
   it('should disable the decrement button when the score is equal to the min score', async () => {
     let minScore = 6
@@ -68,7 +68,7 @@ describe('Score.vue', () => {
       },
       sync: false
     })
-    expect(scoreWrapper.find('.score-decrement').attributes('disabled')).toBe('disabled');
+    expect(scoreWrapper.find('.score-decrement').attributes('disabled')).toBe('disabled')
   })
 
   it('should enable the decrement button when the score is less than the min score', async () => {
@@ -81,6 +81,6 @@ describe('Score.vue', () => {
       },
       sync: false
     })
-    expect(scoreWrapper.find('.score-decrement').attributes('disabled')).toBeFalsy();
-  });
+    expect(scoreWrapper.find('.score-decrement').attributes('disabled')).toBeFalsy()
+  })
 })

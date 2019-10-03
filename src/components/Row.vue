@@ -5,7 +5,7 @@
         {{ name }}
       </div>
       <div class="column is-one-fifth score-section">
-        <Score :score="score" :maxScore="maxScore" v-on:update:score="$emit('update:score', $event)"></Score>
+        <Score :score="score" :maxScore="maxScore" v-on:update:score="updateScore($event)"></Score>
       </div>
       <div class="column is-one-fifth modifier-section">
         {{ modifier(score) }}
@@ -36,11 +36,31 @@ export default Vue.extend({
     score: Number,
     pointCost: Number,
     maxScore: Number,
-    minScore: Number
+    minScore: Number,
+    thresholdScore: Number,
+    thresholdInterval: Number
   },
   methods: {
-    modifier(score: number) {
+    modifier (score: number) {
       return (Math.floor((score - 10) / 2))
+    },
+    updateScore (updatedScore: number) {
+      let result = { score: updatedScore, cost: null as unknown as number }
+      if (updatedScore > this.score) {
+        if (updatedScore > this.thresholdScore) {
+          result.cost = this.pointCost + this.thresholdInterval
+        } else {
+          result.cost = this.pointCost + 1
+        }
+      } else if (updatedScore < this.score) {
+        if (updatedScore >= this.thresholdScore) {
+          result.cost = this.pointCost - this.thresholdInterval
+        } else {
+          result.cost = this.pointCost - 1
+        }
+      }
+
+      this.$emit('update:score', result)
     }
   }
 })
