@@ -20,7 +20,7 @@
            :key="ability.name"
            :name="ability.name"
            :score="ability.score"
-           :point-cost="ability.cost"
+           :cost="ability.cost"
            :maxScore="maxScore"
            :minScore="minScore"
            :thresholdScore="thresholdScore"
@@ -45,6 +45,7 @@ export default Vue.extend({
   props: {
     abilityArray: Array,
     baseScore: Number,
+    baseCost: Number,
     maxScore: Number,
     minScore: Number,
     thresholdScore: Number,
@@ -58,7 +59,7 @@ export default Vue.extend({
       }
     },
     resetScore (ability) {
-      this.updateScore(ability, this.baseScore)
+      this.updateScore(ability, this.baseScore, this.baseCost)
     },
     resetAll () {
       this.abilities.forEach((ability) => {

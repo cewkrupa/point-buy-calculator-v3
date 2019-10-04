@@ -4,14 +4,15 @@
       Point Buy Calculator v3
     </h1>
     <div class="stats">
-      <span class="total">Total: {{total}}</span>
-      <span class="remaining">Remaining:</span>
-      <span class="maxScore">Max Score: {{maxScore}}</span>
-      <span class="minScore">Min Score: {{minScore}}</span>
+      <span class="total" data-qa="total">Total: {{total}}</span>
+      <span class="remaining" data-qa="remaining">Remaining:{{remainingScore}}</span>
+      <span class="maxScore" data-qa="maxScore">Max Score: {{maxScore}}</span>
+      <span class="minScore" data-qa="minScore">Min Score: {{minScore}}</span>
     </div>
     <Table
       :abilityArray="abilities"
       :baseScore="baseScore"
+      :baseCost="baseCost"
       :maxScore="maxScore"
       :minScore="minScore"
       :thresholdScore="thresholdScore"
@@ -32,16 +33,22 @@ export default Vue.extend({
     Table
   },
   computed: {
-    total() {
-      return 3
+    remainingScore (): number {
+      let totalCost = 0
+      this.abilities.forEach((ability: any) => {
+        totalCost += ability.cost
+      })
+      return this.total - totalCost
     }
   },
   data: function() {
     return {
       abilities: config.abilities,
       baseScore: config.baseScore,
+      baseCost: config.baseCost,
       maxScore: config.maxScore,
       minScore: config.minScore,
+      total: config.totalPoints,
       thresholdScore: config.thresholdScore,
       thresholdInterval: config.thresholdInterval
     }

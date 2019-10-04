@@ -5,17 +5,17 @@ describe('Row.vue', () => {
   it('renders the row elements when passed as props', () => {
     const name = 'Strength'
     const score = 8
-    const pointCost = 0
+    const cost = 0
     const propsWrapper = mount(Row, {
       propsData: {
         name,
         score,
-        pointCost
+        cost
       }
     })
     expect(propsWrapper.text()).toContain(name)
     expect(propsWrapper.text()).toContain(score)
-    expect(propsWrapper.text()).toContain(pointCost)
+    expect(propsWrapper.text()).toContain(cost)
   })
 
   it('should emit an update score event when the score is updated in the score component', () => {
@@ -23,7 +23,7 @@ describe('Row.vue', () => {
       propsData: {
         name: 'test',
         score: 4,
-        pointCost: 0
+        cost: 0
       }
     })
 
@@ -38,7 +38,7 @@ describe('Row.vue', () => {
       propsData: {
         name: 'test',
         score: 4,
-        pointCost: 0
+        cost: 0
       }
     })
 
@@ -50,7 +50,7 @@ describe('Row.vue', () => {
       propsData: {
         name: 'test',
         score: 12,
-        pointCost: 0
+        cost: 0
       }
     })
     let calculatedModifier = (Math.floor((12 - 10) / 2))
@@ -62,7 +62,7 @@ describe('Row.vue', () => {
       propsData: {
         name: 'test',
         score: 4,
-        pointCost: 0,
+        cost: 0,
         thresholdScore: 5,
         thresholdInterval: 2
       }

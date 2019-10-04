@@ -11,7 +11,7 @@
         {{ modifier(score) }}
       </div>
       <div class="column is-one-fifth point-cost-section">
-        {{ pointCost }}
+        {{ cost }}
       </div>
       <div class="column is-one-fifth reset-section">
         <button class="button reset-button" @click="$emit('reset:score')">
@@ -34,7 +34,7 @@ export default Vue.extend({
   props: {
     name: String,
     score: Number,
-    pointCost: Number,
+    cost: Number,
     maxScore: Number,
     minScore: Number,
     thresholdScore: Number,
@@ -48,15 +48,15 @@ export default Vue.extend({
       let result = { score: updatedScore, cost: null as unknown as number }
       if (updatedScore > this.score) {
         if (updatedScore > this.thresholdScore) {
-          result.cost = this.pointCost + this.thresholdInterval
+          result.cost = this.cost + this.thresholdInterval
         } else {
-          result.cost = this.pointCost + 1
+          result.cost = this.cost + 1
         }
       } else if (updatedScore < this.score) {
         if (updatedScore >= this.thresholdScore) {
-          result.cost = this.pointCost - this.thresholdInterval
+          result.cost = this.cost - this.thresholdInterval
         } else {
-          result.cost = this.pointCost - 1
+          result.cost = this.cost - 1
         }
       }
 

@@ -7,17 +7,17 @@ describe('Table.vue', () => {
     {
       name: 'TestAbility',
       score: 69,
-      pointCost: 42
+      cost: 42
     },
     {
       name: 'Postmodernism',
       score: 123,
-      pointCost: 5
+      cost: 5
     },
     {
       name: 'PantherMan',
       score: 12,
-      pointCost: 4
+      cost: 4
     }
   ]
   const baseScore = 8
@@ -55,7 +55,7 @@ describe('Table.vue', () => {
 
     wrapper.find(`[data-qa="row-PantherMan"]`).vm.$emit('update:score', updatedScore, updatedCost)
     expect(wrapper.vm.$props.abilityArray[2].score).toBe(updatedScore)
-    expect(wrapper.vm.$props.abilityArray[2].pointCost).toBe(updatedCost)
+    expect(wrapper.vm.$props.abilityArray[2].cost).toBe(updatedCost)
   })
 
   it('should reset the score when a reset score event is received', () => {
